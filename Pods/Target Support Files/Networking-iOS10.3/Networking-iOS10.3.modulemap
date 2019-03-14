@@ -1,0 +1,7 @@
+module Networking {
+  umbrella header "Networking-iOS10.3-umbrella.h"
+  exclude header "Networking-iOS11.4-umbrella.h"
+
+  export *
+  module * { export * }
+}

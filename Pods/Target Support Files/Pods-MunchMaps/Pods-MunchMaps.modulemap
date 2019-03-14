@@ -1,0 +1,6 @@
+module Pods_MunchMaps {
+  umbrella header "Pods-MunchMaps-umbrella.h"
+
+  export *
+  module * { export * }
+}

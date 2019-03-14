@@ -1,0 +1,20 @@
+PODS:
+  - Alamofire (5.0.0-beta.3)
+  - Networking (4.4.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.0-beta.3)
+  - Networking (~> 4)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Networking
+
+SPEC CHECKSUMS:
+  Alamofire: 50d6fa7e8cbe7f84559e86ab641ffd029db655f8
+  Networking: cbef47ab030af248248c26a696adb88989b52ef1
+
+PODFILE CHECKSUM: 1345bbf1fa08a44b2243580ca01496cdfdfccf62
+
+COCOAPODS: 1.6.1
