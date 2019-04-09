@@ -5,6 +5,9 @@
       location = "group:MunchMaps.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:MunchMaps">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

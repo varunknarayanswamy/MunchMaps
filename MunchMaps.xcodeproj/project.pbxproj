@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		51D416C44589BF319AE8622A /* libPods-MunchMapsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A06203D4E0F90CA1AEC54DCF /* libPods-MunchMapsUITests.a */; };
 		A0594F6AFAD22C03E549C805 /* libPods-MunchMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8BD9212CF41AEE78B2011E /* libPods-MunchMaps.a */; };
+		E91643D42249C3980093B5CF /* SavedTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91643D32249C3980093B5CF /* SavedTable.swift */; };
+		E91643D62249C8370093B5CF /* saved_future.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91643D52249C8370093B5CF /* saved_future.swift */; };
+		E93FD8C6225667EE00CAFC56 /* quickadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FD8C5225667EE00CAFC56 /* quickadd.swift */; };
 		E95A22912238067300EC8354 /* URLbuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A22902238067300EC8354 /* URLbuilder.swift */; };
 		E95A229722388D7100EC8354 /* TableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A229622388D7100EC8354 /* TableClass.swift */; };
+		E95A802B2243E800004D0FBE /* RestaurantPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A802A2243E800004D0FBE /* RestaurantPage.swift */; };
+		E95B801F225998E600BE1D7E /* randomRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B801E225998E600BE1D7E /* randomRestaurant.swift */; };
 		E98842B62235B51E00A1B90E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98842B52235B51D00A1B90E /* MapKit.framework */; };
 		E98842B82235B52600A1B90E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98842B72235B52600A1B90E /* CoreLocation.framework */; };
 		E9E8D2CD222EE69E00B8979B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8D2CC222EE69E00B8979B /* AppDelegate.swift */; };
@@ -20,6 +25,9 @@
 		E9E8D2D7222EE6A100B8979B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E8D2D5222EE6A100B8979B /* LaunchScreen.storyboard */; };
 		E9E8D2E2222EE6A100B8979B /* MunchMapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8D2E1222EE6A100B8979B /* MunchMapsTests.swift */; };
 		E9E8D2ED222EE6A100B8979B /* MunchMapsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8D2EC222EE6A100B8979B /* MunchMapsUITests.swift */; };
+		E9F4462F225A6480001F6979 /* location_or_city.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4462E225A6480001F6979 /* location_or_city.swift */; };
+		E9F44631225A6D5B001F6979 /* CityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F44630225A6D5B001F6979 /* CityTableCell.swift */; };
+		E9F44639225BB0DA001F6979 /* CitySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F44638225BB0DA001F6979 /* CitySearch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +54,13 @@
 		A06203D4E0F90CA1AEC54DCF /* libPods-MunchMapsUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MunchMapsUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA833DBAEDE531B88F54533D /* Pods-MunchMapsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MunchMapsUITests.debug.xcconfig"; path = "Target Support Files/Pods-MunchMapsUITests/Pods-MunchMapsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD8BD9212CF41AEE78B2011E /* libPods-MunchMaps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MunchMaps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E91643D32249C3980093B5CF /* SavedTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTable.swift; sourceTree = "<group>"; };
+		E91643D52249C8370093B5CF /* saved_future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saved_future.swift; sourceTree = "<group>"; };
+		E93FD8C5225667EE00CAFC56 /* quickadd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickadd.swift; sourceTree = "<group>"; };
 		E95A22902238067300EC8354 /* URLbuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLbuilder.swift; sourceTree = "<group>"; };
 		E95A229622388D7100EC8354 /* TableClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableClass.swift; sourceTree = "<group>"; };
+		E95A802A2243E800004D0FBE /* RestaurantPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPage.swift; sourceTree = "<group>"; };
+		E95B801E225998E600BE1D7E /* randomRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = randomRestaurant.swift; sourceTree = "<group>"; };
 		E98842B52235B51D00A1B90E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E98842B72235B52600A1B90E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E9E8D2C9222EE69E00B8979B /* MunchMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MunchMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +76,9 @@
 		E9E8D2E8222EE6A100B8979B /* MunchMapsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MunchMapsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E8D2EC222EE6A100B8979B /* MunchMapsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MunchMapsUITests.swift; sourceTree = "<group>"; };
 		E9E8D2EE222EE6A100B8979B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9F4462E225A6480001F6979 /* location_or_city.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = location_or_city.swift; sourceTree = "<group>"; };
+		E9F44630225A6D5B001F6979 /* CityTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableCell.swift; sourceTree = "<group>"; };
+		E9F44638225BB0DA001F6979 /* CitySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,14 +157,22 @@
 		E9E8D2CB222EE69E00B8979B /* MunchMaps */ = {
 			isa = PBXGroup;
 			children = (
-				E95A229622388D7100EC8354 /* TableClass.swift */,
-				E9E8D2CC222EE69E00B8979B /* AppDelegate.swift */,
+				E9F4462E225A6480001F6979 /* location_or_city.swift */,
 				E9E8D2CE222EE69E00B8979B /* ViewController.swift */,
+				E9F44638225BB0DA001F6979 /* CitySearch.swift */,
+				E95A802A2243E800004D0FBE /* RestaurantPage.swift */,
 				E95A22902238067300EC8354 /* URLbuilder.swift */,
+				E95A229622388D7100EC8354 /* TableClass.swift */,
+				E9F44630225A6D5B001F6979 /* CityTableCell.swift */,
 				E9E8D2D0222EE69E00B8979B /* Main.storyboard */,
-				E9E8D2D3222EE6A100B8979B /* Assets.xcassets */,
+				E91643D52249C8370093B5CF /* saved_future.swift */,
+				E91643D32249C3980093B5CF /* SavedTable.swift */,
+				E93FD8C5225667EE00CAFC56 /* quickadd.swift */,
+				E95B801E225998E600BE1D7E /* randomRestaurant.swift */,
 				E9E8D2D5222EE6A100B8979B /* LaunchScreen.storyboard */,
 				E9E8D2D8222EE6A100B8979B /* Info.plist */,
+				E9E8D2CC222EE69E00B8979B /* AppDelegate.swift */,
+				E9E8D2D3222EE6A100B8979B /* Assets.xcassets */,
 			);
 			path = MunchMaps;
 			sourceTree = "<group>";
@@ -356,8 +380,16 @@
 			files = (
 				E95A22912238067300EC8354 /* URLbuilder.swift in Sources */,
 				E95A229722388D7100EC8354 /* TableClass.swift in Sources */,
+				E91643D42249C3980093B5CF /* SavedTable.swift in Sources */,
 				E9E8D2CF222EE69E00B8979B /* ViewController.swift in Sources */,
+				E9F4462F225A6480001F6979 /* location_or_city.swift in Sources */,
+				E9F44631225A6D5B001F6979 /* CityTableCell.swift in Sources */,
+				E9F44639225BB0DA001F6979 /* CitySearch.swift in Sources */,
+				E95A802B2243E800004D0FBE /* RestaurantPage.swift in Sources */,
+				E91643D62249C8370093B5CF /* saved_future.swift in Sources */,
 				E9E8D2CD222EE69E00B8979B /* AppDelegate.swift in Sources */,
+				E93FD8C6225667EE00CAFC56 /* quickadd.swift in Sources */,
+				E95B801F225998E600BE1D7E /* randomRestaurant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
