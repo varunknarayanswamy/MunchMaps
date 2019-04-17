@@ -12,12 +12,15 @@
 		E91643D42249C3980093B5CF /* SavedTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91643D32249C3980093B5CF /* SavedTable.swift */; };
 		E91643D62249C8370093B5CF /* saved_future.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91643D52249C8370093B5CF /* saved_future.swift */; };
 		E93FD8C6225667EE00CAFC56 /* quickadd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FD8C5225667EE00CAFC56 /* quickadd.swift */; };
+		E953D385225D8DEA00AFDA28 /* FilterTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953D384225D8DEA00AFDA28 /* FilterTab.swift */; };
 		E95A22912238067300EC8354 /* URLbuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A22902238067300EC8354 /* URLbuilder.swift */; };
 		E95A229722388D7100EC8354 /* TableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A229622388D7100EC8354 /* TableClass.swift */; };
 		E95A802B2243E800004D0FBE /* RestaurantPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A802A2243E800004D0FBE /* RestaurantPage.swift */; };
 		E95B801F225998E600BE1D7E /* randomRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B801E225998E600BE1D7E /* randomRestaurant.swift */; };
+		E96B4803226586B60034C42C /* FutureTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B4802226586B60034C42C /* FutureTable.swift */; };
 		E98842B62235B51E00A1B90E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98842B52235B51D00A1B90E /* MapKit.framework */; };
 		E98842B82235B52600A1B90E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98842B72235B52600A1B90E /* CoreLocation.framework */; };
+		E99EEB7722624B0A00AF92E3 /* FilterCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99EEB7622624B0A00AF92E3 /* FilterCellTableViewCell.swift */; };
 		E9E8D2CD222EE69E00B8979B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8D2CC222EE69E00B8979B /* AppDelegate.swift */; };
 		E9E8D2CF222EE69E00B8979B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8D2CE222EE69E00B8979B /* ViewController.swift */; };
 		E9E8D2D2222EE69E00B8979B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E8D2D0222EE69E00B8979B /* Main.storyboard */; };
@@ -25,6 +28,7 @@
 		E9E8D2D7222EE6A100B8979B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E8D2D5222EE6A100B8979B /* LaunchScreen.storyboard */; };
 		E9E8D2E2222EE6A100B8979B /* MunchMapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8D2E1222EE6A100B8979B /* MunchMapsTests.swift */; };
 		E9E8D2ED222EE6A100B8979B /* MunchMapsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8D2EC222EE6A100B8979B /* MunchMapsUITests.swift */; };
+		E9F0AD452263C65F003BA970 /* DropDownList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0AD442263C65F003BA970 /* DropDownList.swift */; };
 		E9F4462F225A6480001F6979 /* location_or_city.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4462E225A6480001F6979 /* location_or_city.swift */; };
 		E9F44631225A6D5B001F6979 /* CityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F44630225A6D5B001F6979 /* CityTableCell.swift */; };
 		E9F44639225BB0DA001F6979 /* CitySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F44638225BB0DA001F6979 /* CitySearch.swift */; };
@@ -57,12 +61,15 @@
 		E91643D32249C3980093B5CF /* SavedTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTable.swift; sourceTree = "<group>"; };
 		E91643D52249C8370093B5CF /* saved_future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saved_future.swift; sourceTree = "<group>"; };
 		E93FD8C5225667EE00CAFC56 /* quickadd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickadd.swift; sourceTree = "<group>"; };
+		E953D384225D8DEA00AFDA28 /* FilterTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTab.swift; sourceTree = "<group>"; };
 		E95A22902238067300EC8354 /* URLbuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLbuilder.swift; sourceTree = "<group>"; };
 		E95A229622388D7100EC8354 /* TableClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableClass.swift; sourceTree = "<group>"; };
 		E95A802A2243E800004D0FBE /* RestaurantPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPage.swift; sourceTree = "<group>"; };
 		E95B801E225998E600BE1D7E /* randomRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = randomRestaurant.swift; sourceTree = "<group>"; };
+		E96B4802226586B60034C42C /* FutureTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureTable.swift; sourceTree = "<group>"; };
 		E98842B52235B51D00A1B90E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E98842B72235B52600A1B90E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E99EEB7622624B0A00AF92E3 /* FilterCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellTableViewCell.swift; sourceTree = "<group>"; };
 		E9E8D2C9222EE69E00B8979B /* MunchMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MunchMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E8D2CC222EE69E00B8979B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9E8D2CE222EE69E00B8979B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +83,7 @@
 		E9E8D2E8222EE6A100B8979B /* MunchMapsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MunchMapsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E8D2EC222EE6A100B8979B /* MunchMapsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MunchMapsUITests.swift; sourceTree = "<group>"; };
 		E9E8D2EE222EE6A100B8979B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9F0AD442263C65F003BA970 /* DropDownList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownList.swift; sourceTree = "<group>"; };
 		E9F4462E225A6480001F6979 /* location_or_city.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = location_or_city.swift; sourceTree = "<group>"; };
 		E9F44630225A6D5B001F6979 /* CityTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableCell.swift; sourceTree = "<group>"; };
 		E9F44638225BB0DA001F6979 /* CitySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearch.swift; sourceTree = "<group>"; };
@@ -132,6 +140,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E96B47FC226585660034C42C /* SearchFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E9F4462E225A6480001F6979 /* location_or_city.swift */,
+				E9E8D2CE222EE69E00B8979B /* ViewController.swift */,
+				E9F44638225BB0DA001F6979 /* CitySearch.swift */,
+				E95A22902238067300EC8354 /* URLbuilder.swift */,
+				E9F44630225A6D5B001F6979 /* CityTableCell.swift */,
+			);
+			path = SearchFiles;
+			sourceTree = "<group>";
+		};
+		E96B47FE226585C90034C42C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E91643D52249C8370093B5CF /* saved_future.swift */,
+				E91643D32249C3980093B5CF /* SavedTable.swift */,
+				E96B4802226586B60034C42C /* FutureTable.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		E96B4801226586190034C42C /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				E953D384225D8DEA00AFDA28 /* FilterTab.swift */,
+				E99EEB7622624B0A00AF92E3 /* FilterCellTableViewCell.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		E9E8D2C0222EE69E00B8979B = {
 			isa = PBXGroup;
 			children = (
@@ -157,16 +196,13 @@
 		E9E8D2CB222EE69E00B8979B /* MunchMaps */ = {
 			isa = PBXGroup;
 			children = (
-				E9F4462E225A6480001F6979 /* location_or_city.swift */,
-				E9E8D2CE222EE69E00B8979B /* ViewController.swift */,
-				E9F44638225BB0DA001F6979 /* CitySearch.swift */,
+				E96B47FC226585660034C42C /* SearchFiles */,
+				E96B4801226586190034C42C /* Filter */,
 				E95A802A2243E800004D0FBE /* RestaurantPage.swift */,
-				E95A22902238067300EC8354 /* URLbuilder.swift */,
 				E95A229622388D7100EC8354 /* TableClass.swift */,
-				E9F44630225A6D5B001F6979 /* CityTableCell.swift */,
 				E9E8D2D0222EE69E00B8979B /* Main.storyboard */,
-				E91643D52249C8370093B5CF /* saved_future.swift */,
-				E91643D32249C3980093B5CF /* SavedTable.swift */,
+				E9F0AD442263C65F003BA970 /* DropDownList.swift */,
+				E96B47FE226585C90034C42C /* Library */,
 				E93FD8C5225667EE00CAFC56 /* quickadd.swift */,
 				E95B801E225998E600BE1D7E /* randomRestaurant.swift */,
 				E9E8D2D5222EE6A100B8979B /* LaunchScreen.storyboard */,
@@ -383,6 +419,8 @@
 				E91643D42249C3980093B5CF /* SavedTable.swift in Sources */,
 				E9E8D2CF222EE69E00B8979B /* ViewController.swift in Sources */,
 				E9F4462F225A6480001F6979 /* location_or_city.swift in Sources */,
+				E99EEB7722624B0A00AF92E3 /* FilterCellTableViewCell.swift in Sources */,
+				E953D385225D8DEA00AFDA28 /* FilterTab.swift in Sources */,
 				E9F44631225A6D5B001F6979 /* CityTableCell.swift in Sources */,
 				E9F44639225BB0DA001F6979 /* CitySearch.swift in Sources */,
 				E95A802B2243E800004D0FBE /* RestaurantPage.swift in Sources */,
@@ -390,6 +428,8 @@
 				E9E8D2CD222EE69E00B8979B /* AppDelegate.swift in Sources */,
 				E93FD8C6225667EE00CAFC56 /* quickadd.swift in Sources */,
 				E95B801F225998E600BE1D7E /* randomRestaurant.swift in Sources */,
+				E9F0AD452263C65F003BA970 /* DropDownList.swift in Sources */,
+				E96B4803226586B60034C42C /* FutureTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

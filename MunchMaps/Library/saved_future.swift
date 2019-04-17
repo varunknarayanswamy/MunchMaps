@@ -13,6 +13,10 @@ class saved_future: UIViewController {
     @IBAction func saved_list(_ sender: Any) {
         performSegue(withIdentifier: "saved_list", sender: nil)
     }
+    
+    @IBAction func future_list(_ sender: Any) {
+        performSegue(withIdentifier: "future_list", sender: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -10,11 +10,12 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class randomRestaurant: UIViewController {
+class randomRestaurant: UIViewController, DropDownListDelegate {
     
-    var currentRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: false)
-    var pastRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: false)
-     var nextRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: false)
+    var oldStatus: String = ""
+    var currentRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: "", cuisine: [])
+    var pastRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: "", cuisine: [])
+    var nextRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: "", cuisine: [])
     let locationManager = CLLocationManager()
     var unsavedRest = [Search.Restaurant]()
     var currentIndex = 0
@@ -34,58 +35,11 @@ class randomRestaurant: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    /*func initializeData()
-    {
-        Search.GlobalVariables.restaurantResults.removeAll()
-        let network = Networking(baseURL: "https://developers.zomato.com/api/v2.1/search?entity_id=" + City_info.id + "&entity_type=city&sort=cost&order=asc")
-        network.headerFields = ["user-key": "b9027ccfdfaa41da59bf38701cd49889"]
-        
-        network.get("/get")
-        {
-            result in switch(result)
-            {
-            case .success(let zomato):
-                print("success")
-                let jsonval = zomato.dictionaryBody
-                var data = jsonval["restaurants"] as! NSArray
-                for i in data
-                {
-                    let restdata = i as! NSDictionary
-                    let restDict = (restdata.value(forKey: "restaurant")) as! NSDictionary
-                    let name = restDict.value(forKey: "name")
-                    let a = restDict.value(forKey: "location")! as! NSDictionary
-                    let lat = a.value(forKey: "latitude")
-                    let long = a.value(forKey: "longitude")
-                    let namestringfull = String(describing: name)
-                    let namestringcut1 = String(namestringfull.suffix(namestringfull.count-9))
-                    let namestring = String(namestringcut1.prefix(namestringcut1.count-1))
-                    let location = String(describing: a.value(forKey: "address")!)
-                    let latVal = String(describing: lat)
-                    let longVal = String(describing: long)
-                    let latRemove = String(latVal.suffix(latVal.count-9))
-                    let longRemove = String(longVal.suffix(longVal.count-9))
-                    let latRemove2 = String(latRemove.prefix(latRemove.count-1))
-                    let longRemove2 = String(longRemove.prefix(longRemove.count-1))
-                    let latDouble = Double(latRemove2)
-                    let longDouble = Double(longRemove2)
-                    let CLLocation = CLLocationCoordinate2D(latitude: latDouble!, longitude: longDouble!)
-                    print(location)
-                    Search.GlobalVariables.restaurantResults.append(Search.Restaurant(name: namestring, address: location, Latlocation: CLLocation, saved: false))
-                    self.filteredArray = Search.GlobalVariables.restaurantResults
-                }
-                self.CityRestTable.reloadData()
-            case .failure(_):
-                print("error")
-            }
-        }
-
-    }*/
-    
     func initialize()
     {
         for i in Search.GlobalVariables.restaurantResults
         {
-            if (i.saved == false)
+            if (i.saved == "unsaved")
             {
                 unsavedRest.append(i)
             }
@@ -94,8 +48,6 @@ class randomRestaurant: UIViewController {
         currentIndex = unsavedRest.count/2
         print(currentIndex)
         currentRest = unsavedRest[currentIndex]
-        pastRest = unsavedRest[currentIndex-1]
-        nextRest = unsavedRest[currentIndex+1]
     }
     
     func PageSetup()
@@ -103,28 +55,35 @@ class randomRestaurant: UIViewController {
         restTitle.text = currentRest.name
         added.setTitle("add", for: .normal)
         added.setTitleColor(.blue, for: .normal)
+        restTitle.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+        added.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
     }
     
     
     @IBAction func forwardRest(_ sender: Any) {
-    if (currentIndex == unsavedRest.count-1)
+        if (oldStatus != "unsaved")
         {
-            currentIndex = 0
+            unsavedRest.remove(at: currentIndex)
+            if (currentIndex == unsavedRest.count)
+            {
+                currentIndex = 0
+            }
+            currentRest = unsavedRest[currentIndex]
         }
         else
         {
-            currentIndex = currentIndex + 1
+            if (currentIndex == unsavedRest.count-1)
+            {
+                currentIndex = 0
+            }
+            else
+            {
+                currentIndex = currentIndex + 1
+            }
+            currentRest = unsavedRest[currentIndex]
         }
-        currentRest = unsavedRest[currentIndex]
-        pastRest = unsavedRest[currentIndex-1]
-        if (currentIndex == unsavedRest.count-1)
-        {
-            nextRest = unsavedRest[0]
-        }
-        else
-        {
-            nextRest = unsavedRest[currentIndex+1]
-        }
+        print(currentIndex)
+        oldStatus = "unsaved"
         let overlay = mapview.overlays
         mapview.removeOverlays(overlay)
         PageSetup()
@@ -134,24 +93,21 @@ class randomRestaurant: UIViewController {
     
     
     @IBAction func prevRest(_ sender: Any) {
+        if (oldStatus != "unsaved")
+        {
+            unsavedRest.remove(at: currentIndex)
+        }
         if (currentIndex == 0)
         {
-            currentIndex = unsavedRest.count-1
+            currentIndex = unsavedRest.count - 1
         }
         else
         {
-            currentIndex = currentIndex - 1
+            currentIndex = currentIndex-1
         }
+        print(currentIndex)
+        oldStatus = "unsaved"
         currentRest = unsavedRest[currentIndex]
-        nextRest = unsavedRest[currentIndex+1]
-        if (currentIndex == 0)
-        {
-            pastRest = unsavedRest[unsavedRest.count-1]
-        }
-        else
-        {
-            nextRest = unsavedRest[currentIndex-1]
-        }
         let overlay = mapview.overlays
         mapview.removeOverlays(overlay)
         PageSetup()
@@ -161,13 +117,20 @@ class randomRestaurant: UIViewController {
     
     
     @IBAction func Add(_ sender: Any) {
-    if (currentRest.saved == false)
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DropDown") as! DropDownList
+        self.addChild(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
+        popOverVC.delegate = self
+        
+    if (currentRest.saved == "unsaved")
         {
             Search.GlobalVariables.savedRest.append(currentRest)
             added.setTitleColor(.green, for: .normal)
             added.setTitle("Saved", for: .normal)
             let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
-            Search.GlobalVariables.restaurantResults[ind!].saved = true
+            Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
             for i in Search.GlobalVariables.savedRest
             {
                 print(i.name)
@@ -179,7 +142,7 @@ class randomRestaurant: UIViewController {
             added.setTitleColor(.blue, for: .normal)
             added.setTitle("Add", for: .normal)
             let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
-            Search.GlobalVariables.restaurantResults[ind!].saved = false
+            Search.GlobalVariables.restaurantResults[ind!].saved = "unsaved"
             for i in Search.GlobalVariables.savedRest
             {
                 print(i.name)
@@ -253,6 +216,71 @@ class randomRestaurant: UIViewController {
         request.transportType = .automobile
         request.requestsAlternateRoutes = false
         return request
+    }
+    
+    func setStatus(status: String) {
+        if (status == "saved")
+        {
+            added.backgroundColor = UIColor.green
+            restTitle.backgroundColor = UIColor.green
+            added.setTitle("Saved", for: .normal)
+            if (oldStatus == "unsaved")
+            {
+                Search.GlobalVariables.savedRest.append(currentRest)
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
+            }
+            if (oldStatus == "future")
+            {
+                Search.GlobalVariables.futureRest = Search.GlobalVariables.futureRest.filter{ $0.name != currentRest.name}
+                Search.GlobalVariables.savedRest.append(currentRest)
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
+            }
+            oldStatus = "saved"
+        }
+        else if (status == "future")
+        {
+            added.backgroundColor = UIColor.yellow
+            restTitle.backgroundColor = UIColor.yellow
+            added.setTitle("future", for: .normal)
+            print(oldStatus)
+            if (oldStatus == "unsaved")
+            {
+                print("futureunsaved")
+                Search.GlobalVariables.futureRest.append(currentRest)
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "future"
+            }
+            if (oldStatus == "saved")
+            {
+                added.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+                restTitle.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+                Search.GlobalVariables.savedRest = Search.GlobalVariables.savedRest.filter{ $0.name != currentRest.name}
+                Search.GlobalVariables.futureRest.append(currentRest)
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "future"
+            }
+            oldStatus = "future"
+        }
+        else
+        {
+            added.setTitleColor(.blue, for: .normal)
+            added.setTitle("add", for: .normal)
+            if (oldStatus == "future")
+            {
+                Search.GlobalVariables.futureRest = Search.GlobalVariables.futureRest.filter{ $0.name != currentRest.name}
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "unsaved"
+            }
+            if (oldStatus == "saved")
+            {
+                Search.GlobalVariables.savedRest = Search.GlobalVariables.savedRest.filter{ $0.name != currentRest.name}
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "unsaved"
+            }
+            oldStatus = "unsaved"
+        }
     }
 
 }

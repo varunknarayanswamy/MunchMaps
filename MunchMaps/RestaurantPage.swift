@@ -10,8 +10,10 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class RestaurantPage: UIViewController {
-
+class RestaurantPage: UIViewController, DropDownListDelegate {
+    
+    var savedStatus: String = ""
+    var oldStatus: String = ""
     let locationManager = CLLocationManager()
     var futureRest = [Search.Restaurant]()
     @IBOutlet weak var Add: UIButton!
@@ -19,7 +21,7 @@ class RestaurantPage: UIViewController {
     @IBOutlet weak var mapview: MKMapView!
     @IBOutlet weak var restaurant_Name: UILabel!
     var previousLocation: CLLocation?
-    var rest_info = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: false)
+    var rest_info = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: "", cuisine: [])
     
     override func viewDidLoad() {
         print(rest_info.saved)
@@ -35,43 +37,35 @@ class RestaurantPage: UIViewController {
     {
         restaurant_Name.text = rest_info.name
         print(rest_info.saved)
-        if (rest_info.saved == false)
+        if (rest_info.saved == "unsaved")
         {
             Add.setTitle("add", for: .normal)
-            Add.setTitleColor(.blue, for: .normal)
+            restaurant_Name.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+            Add.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+            oldStatus = "unsaved"
+        }
+        else if (rest_info.saved == "saved")
+        {
+            Add.setTitle("saved", for: .normal)
+            restaurant_Name.backgroundColor = UIColor.green
+            Add.backgroundColor = UIColor.green
+            oldStatus = "saved"
         }
         else
         {
-            print("saved")
-            Add.setTitle("saved", for: .normal)
-            Add.setTitleColor(.green, for: .normal)
+            Add.setTitle("future", for: .normal)
+            restaurant_Name.backgroundColor = UIColor.yellow
+            Add.backgroundColor = UIColor.yellow
+            oldStatus = "future"
         }
     }
     @IBAction func Add_button(_ sender: Any) {
-        if (rest_info.saved == false)
-        {
-            Search.GlobalVariables.savedRest.append(rest_info)
-            Add.setTitleColor(.green, for: .normal)
-            Add.setTitle("Saved", for: .normal)
-            let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
-            Search.GlobalVariables.restaurantResults[ind!].saved = true
-            for i in Search.GlobalVariables.savedRest
-            {
-                print(i.name)
-            }
-        }
-        else
-        {
-            Search.GlobalVariables.savedRest = Search.GlobalVariables.savedRest.filter{ $0.name != rest_info.name}
-            Add.setTitleColor(.blue, for: .normal)
-            Add.setTitle("Add", for: .normal)
-            let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
-            Search.GlobalVariables.restaurantResults[ind!].saved = false
-            for i in Search.GlobalVariables.savedRest
-            {
-                print(i.name)
-            }
-        }
+            let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DropDown") as! DropDownList
+            self.addChild(popOverVC)
+            popOverVC.view.frame = self.view.frame
+            self.view.addSubview(popOverVC.view)
+            popOverVC.didMove(toParent: self)
+            popOverVC.delegate = self
     }
     func checklocationAuth()
     {
@@ -141,6 +135,71 @@ class RestaurantPage: UIViewController {
         return request
     }
     
+    func setStatus(status: String) {
+        if (status == "saved")
+        {
+            Add.backgroundColor = UIColor.green
+            restaurant_Name.backgroundColor = UIColor.green
+            Add.setTitle("Saved", for: .normal)
+            if (oldStatus == "unsaved")
+            {
+                Search.GlobalVariables.savedRest.append(rest_info)
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
+            }
+            if (oldStatus == "future")
+            {
+             Search.GlobalVariables.futureRest = Search.GlobalVariables.futureRest.filter{ $0.name != rest_info.name}
+             Search.GlobalVariables.savedRest.append(rest_info)
+             let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
+             Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
+            }
+            oldStatus = "saved"
+        }
+        else if (status == "future")
+        {
+            Add.backgroundColor = UIColor.yellow
+            restaurant_Name.backgroundColor = UIColor.yellow
+            Add.setTitle("future", for: .normal)
+            print(oldStatus)
+            if (oldStatus == "unsaved")
+            {
+                print("futureunsaved")
+                Search.GlobalVariables.futureRest.append(rest_info)
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "future"
+            }
+            if (oldStatus == "saved")
+            {
+                print("futuresaved")
+                Search.GlobalVariables.savedRest = Search.GlobalVariables.savedRest.filter{ $0.name != rest_info.name}
+                Search.GlobalVariables.futureRest.append(rest_info)
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "future"
+            }
+            oldStatus = "future"
+        }
+        else
+        {
+            Add.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+            restaurant_Name.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+            Add.setTitle("add", for: .normal)
+            if (oldStatus == "future")
+            {
+                Search.GlobalVariables.futureRest = Search.GlobalVariables.futureRest.filter{ $0.name != rest_info.name}
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "unsaved"
+            }
+            if (oldStatus == "saved")
+            {
+                Search.GlobalVariables.savedRest = Search.GlobalVariables.savedRest.filter{ $0.name != rest_info.name}
+                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.restaurantResults[ind!].saved = "unsaved"
+            }
+            oldStatus = "unsaved"
+        }
+    }
+    
     /*func getCenterOfMap(for mapView: MKMapView)->CLLocation
     {
         let lat = mapView.centerCoordinate.latitude
@@ -188,3 +247,5 @@ extension RestaurantPage: MKMapViewDelegate {
         return renderer
     }
 }
+
+

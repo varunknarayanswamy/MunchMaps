@@ -36,6 +36,7 @@ class location_or_city: UIViewController, UITableViewDataSource, UITableViewDele
     var initialCityArray = [City]()
     
     override func viewDidLoad() {
+        self.tabBarController?.tabBar.isHidden = true
         super.viewDidLoad()
         check_location_privacy()
         self.CityTextField.delegate = self
@@ -87,6 +88,7 @@ class location_or_city: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func LocationButton(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = false
         performSegue(withIdentifier: "locationSearch", sender: nil)
         
     }
@@ -107,13 +109,13 @@ class location_or_city: UIViewController, UITableViewDataSource, UITableViewDele
                 {
                 case .success(let zomato):
                     let jsonval = zomato.dictionaryBody
-                    var data = jsonval["location_suggestions"] as! NSArray
+                    let data = jsonval["location_suggestions"] as! NSArray
                     for i in data{
                        let citydata = i as! NSDictionary
                        
                        let cityName = (citydata.value(forKey: "name"))
                        let id = (citydata.value(forKey: "id"))
-                       let country = (citydata.value(forKey: "country_name"))
+                       let country = (citydata.value(forKey: "country_id"))
                        let state = (citydata.value(forKey: "state_name"))
                        let CityNameCrop = self.cropSearch(word: cityName as Any)
                        let CityIDCrop = self.cropSearch(word: id as Any)
@@ -158,6 +160,7 @@ class location_or_city: UIViewController, UITableViewDataSource, UITableViewDele
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tabBarController?.tabBar.isHidden = false
         print("cell found")
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "City", sender: initialCityArray[indexPath.row])
@@ -170,6 +173,7 @@ class location_or_city: UIViewController, UITableViewDataSource, UITableViewDele
             svc.City_info = sender as! City
         }
     }
+    
 
     
     

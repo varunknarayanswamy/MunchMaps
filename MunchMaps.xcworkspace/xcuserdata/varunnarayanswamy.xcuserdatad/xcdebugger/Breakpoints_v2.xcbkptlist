@@ -81,5 +81,224 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MunchMaps/location_or_city.swift"
+            timestampString = "577048790.321764"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "CityButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MunchMaps/location_or_city.swift"
+            timestampString = "577048790.3218319"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "CityButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MunchMaps/location_or_city.swift"
+            timestampString = "577048790.321885"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "CityButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MunchMaps/Filter/FilterTab.swift"
+            timestampString = "577163673.231508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "FilterTab"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.delegate.getter : Swift.Optional&lt;MunchMaps.FilterTabDelegate&gt;"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082487.289289"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.delegate.setter : Swift.Optional&lt;MunchMaps.FilterTabDelegate&gt;"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082487.294663"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; MunchMaps.FilterTab"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082487.297171"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;MunchMaps.FilterTab&gt;"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082487.29889"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "54">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MunchMaps/Filter/FilterTab.swift"
+            timestampString = "577163673.2317311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "FilterTab"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; MunchMaps.FilterTab"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082488.2145081"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; MunchMaps.FilterTab"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082488.216568"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;MunchMaps.FilterTab&gt;"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082488.218915"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;MunchMaps.FilterTab&gt;"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082488.220866"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MunchMaps.FilterTab.__deallocating_deinit"
+                  moduleName = "MunchMaps"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varunnarayanswamy/Desktop/Junior_2nd_semester/MunchMaps/MunchMaps/Filter/FilterTab.swift"
+                  timestampString = "577082488.222641"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

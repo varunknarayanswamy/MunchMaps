@@ -11,8 +11,9 @@ import Alamofire
 import CoreLocation
 import Networking
 
-class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, FilterTabDelegate {
 
+    var SearchController = UISearchController()
     @IBOutlet weak var SearchBar: UISearchBar!
     @IBOutlet weak var Table_of_Places: UITableView!
     
@@ -21,6 +22,7 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     struct GlobalVariables {
         static var savedRest = [Restaurant]()
+        static var futureRest = [Restaurant]()
         static var restaurantResults = [Restaurant]()
     }
     
@@ -29,18 +31,21 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         let name: String
         let address: String
         let Latlocation: CLLocationCoordinate2D
-        var saved: Bool
+        var saved: String
+        var cuisine = [String]()
         
-        init(name: String, address: String, Latlocation: CLLocationCoordinate2D, saved: Bool)
+        init(name: String, address: String, Latlocation: CLLocationCoordinate2D, saved: String, cuisine: [String])
         {
             self.name = name
             self.address = address
             self.Latlocation = Latlocation
             self.saved = saved
+            self.cuisine = cuisine
         }
     }
     
     var filteredResults = [Restaurant]()
+    var CuisineResults = [Restaurant]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +81,8 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     private func setupSearchBar()
     {
         SearchBar.delegate = self
+        SearchBar.showsBookmarkButton = true
+        SearchBar.setImage(UIImage(named: "Filterbutton"), for: .bookmark, state: .normal)
         
     }
     func checklocationAuth()
@@ -114,31 +121,27 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
             case .success(let zomato):
                 print("success")
                 let jsonval = zomato.dictionaryBody
-                var data = jsonval["restaurants"] as! NSArray
+                let data = jsonval["restaurants"] as! NSArray
                 for i in data
                 {
                     let restdata = i as! NSDictionary
-                    var restDict = (restdata.value(forKey: "restaurant")) as! NSDictionary
-                    var name = restDict.value(forKey: "name")
-                    var a = restDict.value(forKey: "location")! as! NSDictionary
-                    var lat = a.value(forKey: "latitude")
-                    var long = a.value(forKey: "longitude")
-                    let namestringfull = String(describing: name)
-                    let namestringcut1 = String(namestringfull.suffix(namestringfull.count-9))
-                    let namestring = String(namestringcut1.prefix(namestringcut1.count-1))
-                    let location = String(describing: a.value(forKey: "address")!)
-                    let latVal = String(describing: lat)
-                    let longVal = String(describing: long)
-                    print(longVal)
-                    let latRemove = String(latVal.suffix(latVal.count-9))
-                    let longRemove = String(longVal.suffix(longVal.count-9))
-                    let latRemove2 = String(latRemove.prefix(latRemove.count-1))
-                    let longRemove2 = String(longRemove.prefix(longRemove.count-1))
-                    let latDouble = Double(latRemove2)
-                    let longDouble = Double(longRemove2)
+                    let restDict = (restdata.value(forKey: "restaurant")) as! NSDictionary
+                    let name = restDict.value(forKey: "name")
+                    let a = restDict.value(forKey: "location")! as! NSDictionary
+                    let cuisine = restDict.value(forKey: "cuisines")
+                    let lat = a.value(forKey: "latitude")
+                    let long = a.value(forKey: "longitude")
+                    let address = a.value(forKey: "address")
+                    let location = self.cropSearch(word: address as Any)
+                    let namestring = self.cropSearch(word: name as Any)
+                    let latDouble = Double(self.cropSearch(word: lat as Any))
+                    let longDouble = Double(self.cropSearch(word: long as Any))
+                    let CuisineString = self.cropSearch(word: cuisine as Any)
+                    print(CuisineString)
+                    let latArr = CuisineString.components(separatedBy: ", ")
                     let CLLocation = CLLocationCoordinate2D(latitude: latDouble!, longitude: longDouble!)
-                    print(location)
-                    GlobalVariables.restaurantResults.append(Restaurant(name: namestring, address: location, Latlocation: CLLocation, saved: false))
+                    GlobalVariables.restaurantResults.append(Restaurant(name: namestring, address: location, Latlocation: CLLocation, saved: "unsaved", cuisine: latArr))
+                    self.CuisineResults = GlobalVariables.restaurantResults
                     self.filteredResults = GlobalVariables.restaurantResults
                 }
                 self.Table_of_Places.reloadData()
@@ -150,6 +153,15 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         }
         print("out3")
     }
+    
+    func cropSearch(word: Any)-> String
+    {
+        let StringWord = String(describing: word)
+        let StringSuffix = String(StringWord.suffix(StringWord.count-9))
+        let StringPrefix = String(StringSuffix.prefix(StringSuffix.count-1))
+        return StringPrefix
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredResults.count
     }
@@ -172,18 +184,84 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
-            filteredResults = GlobalVariables.restaurantResults
+            filteredResults = CuisineResults
             Table_of_Places.reloadData()
             return
         }
         
-        filteredResults = GlobalVariables.restaurantResults.filter({Restaurant->Bool in
+        filteredResults = CuisineResults.filter({Restaurant->Bool in
             Restaurant.name.contains(searchText)})
         Table_of_Places.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    
+    func popupDidDisappear() {
+        if (FilterTab.CuisineGlobal.SavedCuisine.count == 0 && FilterTab.CuisineGlobal.removeCuisine.count == 0)
+        {
+            print("empty?")
+            CuisineResults = GlobalVariables.restaurantResults
+            filteredResults = CuisineResults
+            Table_of_Places.reloadData()
+        }
+        else if (FilterTab.CuisineGlobal.SavedCuisine.count == 0)
+        {
+            CuisineResults = GlobalVariables.restaurantResults
+            for i in CuisineResults
+            {
+                outerloop: for j in i.cuisine
+                {
+                    for k in FilterTab.CuisineGlobal.removeCuisine
+                    {
+                        if (j == k)
+                        {
+                            CuisineResults = CuisineResults.filter {$0.name != i.name}
+                            break outerloop
+                        }
+                    }
+                }
+            }
+            filteredResults = CuisineResults
+            Table_of_Places.reloadData()
+        }
+        else
+        {
+            print(FilterTab.CuisineGlobal.SavedCuisine.count)
+            CuisineResults.removeAll()
+            for i in GlobalVariables.restaurantResults
+            {
+                outerLoop: for j in i.cuisine
+                {
+                    for k in FilterTab.CuisineGlobal.SavedCuisine
+                    {
+                        if (j == k)
+                        {
+                            CuisineResults.append(i)
+                            break outerLoop
+                        }
+                    }
+                }
+            }
+            for i in CuisineResults
+            {
+                outerLoop: for j in i.cuisine
+                {
+                    for k in FilterTab.CuisineGlobal.removeCuisine
+                    {
+                        if (j == k)
+                        {
+                            CuisineResults = CuisineResults.filter {$0.name != i.name}
+                            break outerLoop
+                        }
+                    }
+                }
+            }
+            filteredResults = CuisineResults
+            Table_of_Places.reloadData()
+        }
     }
     
     
@@ -203,7 +281,21 @@ extension Search: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         //hello
     }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterMenu") as! FilterTab
+        self.addChild(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
+        popOverVC.delegate = self
+        if (searchBar.isFirstResponder)
+        {
+            searchBar.resignFirstResponder()
+        }
+    }
 }
+
     
 
 

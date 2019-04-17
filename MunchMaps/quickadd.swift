@@ -32,7 +32,7 @@ class quickadd: UIViewController {
         var ind = 1
         for i in Search.GlobalVariables.restaurantResults
         {
-            if((i.saved == false) && (ind<7))
+            if((i.saved == "unsaved") && (ind<7))
             {
                 switch ind {
                 case 1:
@@ -72,7 +72,7 @@ class quickadd: UIViewController {
         let savedNum = savedRestset.1
         Search.GlobalVariables.savedRest.append(savedRest)
         let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == savedRest.address})
-        Search.GlobalVariables.restaurantResults[ind!].saved = true
+        Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
         let newRest = Readd(num: savedNum)
         sender.setTitle(newRest.name, for: .normal)
         sender.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -80,7 +80,7 @@ class quickadd: UIViewController {
     
     func removeRest(restname: String) -> (Search.Restaurant, Int)
     {
-        var returnRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: false)
+        var returnRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: "unsaved", cuisine: [])
         var indexNum = 0
         for i in 0..<Array6.count
         {
@@ -97,11 +97,11 @@ class quickadd: UIViewController {
     
     func Readd(num: Int)->Search.Restaurant
     {
-        var returnRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: false)
+        var returnRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: "unsaved", cuisine: [])
         for i in Search.GlobalVariables.restaurantResults
         {
             var works = true
-            if (i.saved == false)
+            if (i.saved == "unsaved")
             {
                 for x in Array6
                 {
