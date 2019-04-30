@@ -17,6 +17,7 @@
 		E95A229722388D7100EC8354 /* TableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A229622388D7100EC8354 /* TableClass.swift */; };
 		E95A802B2243E800004D0FBE /* RestaurantPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A802A2243E800004D0FBE /* RestaurantPage.swift */; };
 		E95B801F225998E600BE1D7E /* randomRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B801E225998E600BE1D7E /* randomRestaurant.swift */; };
+		E96067CE22760E5B000A4B3A /* filterTabLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96067CD22760E5B000A4B3A /* filterTabLibrary.swift */; };
 		E96B4803226586B60034C42C /* FutureTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B4802226586B60034C42C /* FutureTable.swift */; };
 		E98842B62235B51E00A1B90E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98842B52235B51D00A1B90E /* MapKit.framework */; };
 		E98842B82235B52600A1B90E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98842B72235B52600A1B90E /* CoreLocation.framework */; };
@@ -66,6 +67,7 @@
 		E95A229622388D7100EC8354 /* TableClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableClass.swift; sourceTree = "<group>"; };
 		E95A802A2243E800004D0FBE /* RestaurantPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPage.swift; sourceTree = "<group>"; };
 		E95B801E225998E600BE1D7E /* randomRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = randomRestaurant.swift; sourceTree = "<group>"; };
+		E96067CD22760E5B000A4B3A /* filterTabLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterTabLibrary.swift; sourceTree = "<group>"; };
 		E96B4802226586B60034C42C /* FutureTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureTable.swift; sourceTree = "<group>"; };
 		E98842B52235B51D00A1B90E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E98842B72235B52600A1B90E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -158,6 +160,7 @@
 				E91643D52249C8370093B5CF /* saved_future.swift */,
 				E91643D32249C3980093B5CF /* SavedTable.swift */,
 				E96B4802226586B60034C42C /* FutureTable.swift */,
+				E96067CD22760E5B000A4B3A /* filterTabLibrary.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				E99EEB7722624B0A00AF92E3 /* FilterCellTableViewCell.swift in Sources */,
 				E953D385225D8DEA00AFDA28 /* FilterTab.swift in Sources */,
 				E9F44631225A6D5B001F6979 /* CityTableCell.swift in Sources */,
+				E96067CE22760E5B000A4B3A /* filterTabLibrary.swift in Sources */,
 				E9F44639225BB0DA001F6979 /* CitySearch.swift in Sources */,
 				E95A802B2243E800004D0FBE /* RestaurantPage.swift in Sources */,
 				E91643D62249C8370093B5CF /* saved_future.swift in Sources */,

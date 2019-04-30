@@ -12,6 +12,9 @@ import MapKit
 
 class randomRestaurant: UIViewController, DropDownListDelegate {
     
+    @IBOutlet weak var forwardButton: UIButton!
+    
+    @IBOutlet weak var backwardButton: UIButton!
     var oldStatus: String = ""
     var currentRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: "", cuisine: [])
     var pastRest = Search.Restaurant(name: "", address: "", Latlocation: CLLocationCoordinate2D(latitude: 0, longitude: 0), saved: "", cuisine: [])
@@ -57,6 +60,9 @@ class randomRestaurant: UIViewController, DropDownListDelegate {
         added.setTitleColor(.blue, for: .normal)
         restTitle.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
         added.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+        forwardButton.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+        backwardButton.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
+        
     }
     
     
@@ -127,7 +133,6 @@ class randomRestaurant: UIViewController, DropDownListDelegate {
     if (currentRest.saved == "unsaved")
         {
             Search.GlobalVariables.savedRest.append(currentRest)
-            added.setTitleColor(.green, for: .normal)
             added.setTitle("Saved", for: .normal)
             let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})
             Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
@@ -221,8 +226,10 @@ class randomRestaurant: UIViewController, DropDownListDelegate {
     func setStatus(status: String) {
         if (status == "saved")
         {
-            added.backgroundColor = UIColor.green
-            restTitle.backgroundColor = UIColor.green
+            added.backgroundColor = UIColor.init(red: 70/255, green: 255/255, blue: 146/255, alpha: 1.0)
+            forwardButton.backgroundColor = UIColor.init(red: 70/255, green: 255/255, blue: 146/255, alpha: 1.0)
+            backwardButton.backgroundColor = UIColor.init(red: 70/255, green: 255/255, blue: 146/255, alpha: 1.0)
+            restTitle.backgroundColor = UIColor.init(red: 70/255, green: 255/255, blue: 146/255, alpha: 1.0)
             added.setTitle("Saved", for: .normal)
             if (oldStatus == "unsaved")
             {
@@ -241,8 +248,10 @@ class randomRestaurant: UIViewController, DropDownListDelegate {
         }
         else if (status == "future")
         {
-            added.backgroundColor = UIColor.yellow
-            restTitle.backgroundColor = UIColor.yellow
+            added.backgroundColor = UIColor.init(red: 255/255, green: 253/255, blue: 164/255, alpha: 1.0)
+            restTitle.backgroundColor = UIColor.init(red: 255/255, green: 253/255, blue: 164/255, alpha: 1.0)
+            forwardButton.backgroundColor = UIColor.init(red: 255/255, green: 253/255, blue: 164/255, alpha: 1.0)
+            backwardButton.backgroundColor = UIColor.init(red: 255/255, green: 253/255, blue: 164/255, alpha: 1.0)
             added.setTitle("future", for: .normal)
             print(oldStatus)
             if (oldStatus == "unsaved")
@@ -254,8 +263,6 @@ class randomRestaurant: UIViewController, DropDownListDelegate {
             }
             if (oldStatus == "saved")
             {
-                added.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
-                restTitle.backgroundColor = UIColor.init(white: 0.8, alpha: 1)
                 Search.GlobalVariables.savedRest = Search.GlobalVariables.savedRest.filter{ $0.name != currentRest.name}
                 Search.GlobalVariables.futureRest.append(currentRest)
                 let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == currentRest.address})

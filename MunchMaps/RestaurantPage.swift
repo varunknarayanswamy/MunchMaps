@@ -37,6 +37,21 @@ class RestaurantPage: UIViewController, DropDownListDelegate {
     {
         restaurant_Name.text = rest_info.name
         print(rest_info.saved)
+        let futureRestInt = Search.GlobalVariables.futureRest.firstIndex(where: {$0.address == rest_info.address})
+        let SavedRestInt = Search.GlobalVariables.savedRest.firstIndex(where: {$0.address == rest_info.address})
+        if (futureRestInt != nil)
+        {
+            rest_info.saved = "future"
+        }
+        else if (SavedRestInt != nil)
+        {
+            rest_info.saved = "saved"
+        }
+        else
+        {
+            rest_info.saved = "unsaved"
+        }
+        
         if (rest_info.saved == "unsaved")
         {
             Add.setTitle("add", for: .normal)
@@ -47,15 +62,15 @@ class RestaurantPage: UIViewController, DropDownListDelegate {
         else if (rest_info.saved == "saved")
         {
             Add.setTitle("saved", for: .normal)
-            restaurant_Name.backgroundColor = UIColor.green
-            Add.backgroundColor = UIColor.green
+            restaurant_Name.backgroundColor = UIColor.init(red: 70/255, green: 255/255, blue: 146/255, alpha: 1.0)
+            Add.backgroundColor = UIColor.init(red: 70/255, green: 255/255, blue: 146/255, alpha: 1.0)
             oldStatus = "saved"
         }
         else
         {
             Add.setTitle("future", for: .normal)
-            restaurant_Name.backgroundColor = UIColor.yellow
-            Add.backgroundColor = UIColor.yellow
+            restaurant_Name.backgroundColor = UIColor.init(red: 255/255, green: 253/255, blue: 164/255, alpha: 1.0)
+            Add.backgroundColor = UIColor.init(red: 255/255, green: 253/255, blue: 164/255, alpha: 1.0)
             oldStatus = "future"
         }
     }
@@ -138,44 +153,44 @@ class RestaurantPage: UIViewController, DropDownListDelegate {
     func setStatus(status: String) {
         if (status == "saved")
         {
-            Add.backgroundColor = UIColor.green
-            restaurant_Name.backgroundColor = UIColor.green
+            Add.backgroundColor = UIColor.init(red: 70/255, green: 255/255, blue: 146/255, alpha: 1.0)
+            restaurant_Name.backgroundColor = UIColor.init(red: 70/255, green: 255/255, blue: 146/255, alpha: 1.0)
             Add.setTitle("Saved", for: .normal)
             if (oldStatus == "unsaved")
             {
                 Search.GlobalVariables.savedRest.append(rest_info)
-                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
-                Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
+                let ind = Search.GlobalVariables.CuisineResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.CuisineResults[ind!].saved = "saved"
             }
             if (oldStatus == "future")
             {
              Search.GlobalVariables.futureRest = Search.GlobalVariables.futureRest.filter{ $0.name != rest_info.name}
              Search.GlobalVariables.savedRest.append(rest_info)
-             let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
-             Search.GlobalVariables.restaurantResults[ind!].saved = "saved"
+             let ind = Search.GlobalVariables.CuisineResults.firstIndex(where: {$0.address == rest_info.address})
+             Search.GlobalVariables.CuisineResults[ind!].saved = "saved"
             }
             oldStatus = "saved"
         }
         else if (status == "future")
         {
-            Add.backgroundColor = UIColor.yellow
-            restaurant_Name.backgroundColor = UIColor.yellow
+            Add.backgroundColor = UIColor.init(red: 255/255, green: 253/255, blue: 164/255, alpha: 1.0)
+            restaurant_Name.backgroundColor = UIColor.init(red: 255/255, green: 253/255, blue: 164/255, alpha: 1.0)
             Add.setTitle("future", for: .normal)
             print(oldStatus)
             if (oldStatus == "unsaved")
             {
                 print("futureunsaved")
                 Search.GlobalVariables.futureRest.append(rest_info)
-                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
-                Search.GlobalVariables.restaurantResults[ind!].saved = "future"
+                let ind = Search.GlobalVariables.CuisineResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.CuisineResults[ind!].saved = "future"
             }
             if (oldStatus == "saved")
             {
                 print("futuresaved")
                 Search.GlobalVariables.savedRest = Search.GlobalVariables.savedRest.filter{ $0.name != rest_info.name}
                 Search.GlobalVariables.futureRest.append(rest_info)
-                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
-                Search.GlobalVariables.restaurantResults[ind!].saved = "future"
+                let ind = Search.GlobalVariables.CuisineResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.CuisineResults[ind!].saved = "future"
             }
             oldStatus = "future"
         }
@@ -187,14 +202,14 @@ class RestaurantPage: UIViewController, DropDownListDelegate {
             if (oldStatus == "future")
             {
                 Search.GlobalVariables.futureRest = Search.GlobalVariables.futureRest.filter{ $0.name != rest_info.name}
-                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
-                Search.GlobalVariables.restaurantResults[ind!].saved = "unsaved"
+                let ind = Search.GlobalVariables.CuisineResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.CuisineResults[ind!].saved = "unsaved"
             }
             if (oldStatus == "saved")
             {
                 Search.GlobalVariables.savedRest = Search.GlobalVariables.savedRest.filter{ $0.name != rest_info.name}
-                let ind = Search.GlobalVariables.restaurantResults.firstIndex(where: {$0.address == rest_info.address})
-                Search.GlobalVariables.restaurantResults[ind!].saved = "unsaved"
+                let ind = Search.GlobalVariables.CuisineResults.firstIndex(where: {$0.address == rest_info.address})
+                Search.GlobalVariables.CuisineResults[ind!].saved = "unsaved"
             }
             oldStatus = "unsaved"
         }

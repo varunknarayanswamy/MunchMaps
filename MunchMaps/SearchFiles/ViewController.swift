@@ -24,6 +24,7 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         static var savedRest = [Restaurant]()
         static var futureRest = [Restaurant]()
         static var restaurantResults = [Restaurant]()
+        static var CuisineResults = [Restaurant]()
     }
     
     internal class Restaurant
@@ -45,7 +46,6 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     }
     
     var filteredResults = [Restaurant]()
-    var CuisineResults = [Restaurant]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,48 +110,54 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         let lonString = String(loccord.longitude)
         print(latString)
         print(lonString)
-        let network = Networking(baseURL: create_search_url(lat: latString, long: lonString, radius: "50000")!)
-        //let network = Networking(baseURL: "https://developers.zomato.com/api/v2.1/search?entity_id=216&entity_type=city")
-        network.headerFields = ["user-key": "b9027ccfdfaa41da59bf38701cd49889"]
-            
-        network.get("/get")
+        var start = 0
+        let count = 20
+        while (start<100)
         {
-            result in switch(result)
+            let network = Networking(baseURL: create_search_url(lat: latString, long: lonString, radius: "50000", start: start, count: 20)!)
+            //let network = Networking(baseURL: "https://developers.zomato.com/api/v2.1/search?entity_id=216&entity_type=city")
+            network.headerFields = ["user-key": "b9027ccfdfaa41da59bf38701cd49889"]
+            
+            network.get("/get")
             {
-            case .success(let zomato):
-                print("success")
-                let jsonval = zomato.dictionaryBody
-                let data = jsonval["restaurants"] as! NSArray
-                for i in data
+                result in switch(result)
                 {
-                    let restdata = i as! NSDictionary
-                    let restDict = (restdata.value(forKey: "restaurant")) as! NSDictionary
-                    let name = restDict.value(forKey: "name")
-                    let a = restDict.value(forKey: "location")! as! NSDictionary
-                    let cuisine = restDict.value(forKey: "cuisines")
-                    let lat = a.value(forKey: "latitude")
-                    let long = a.value(forKey: "longitude")
-                    let address = a.value(forKey: "address")
-                    let location = self.cropSearch(word: address as Any)
-                    let namestring = self.cropSearch(word: name as Any)
-                    let latDouble = Double(self.cropSearch(word: lat as Any))
-                    let longDouble = Double(self.cropSearch(word: long as Any))
-                    let CuisineString = self.cropSearch(word: cuisine as Any)
-                    print(CuisineString)
-                    let latArr = CuisineString.components(separatedBy: ", ")
-                    let CLLocation = CLLocationCoordinate2D(latitude: latDouble!, longitude: longDouble!)
-                    GlobalVariables.restaurantResults.append(Restaurant(name: namestring, address: location, Latlocation: CLLocation, saved: "unsaved", cuisine: latArr))
-                    self.CuisineResults = GlobalVariables.restaurantResults
-                    self.filteredResults = GlobalVariables.restaurantResults
+                case .success(let zomato):
+                    print("success")
+                    let jsonval = zomato.dictionaryBody
+                    let data = jsonval["restaurants"] as! NSArray
+                    for i in data
+                    {
+                        let restdata = i as! NSDictionary
+                        let restDict = (restdata.value(forKey: "restaurant")) as! NSDictionary
+                        let name = restDict.value(forKey: "name")
+                        let a = restDict.value(forKey: "location")! as! NSDictionary
+                        let cuisine = restDict.value(forKey: "cuisines")
+                        let lat = a.value(forKey: "latitude")
+                        let long = a.value(forKey: "longitude")
+                        let address = a.value(forKey: "address")
+                        let location = self.cropSearch(word: address as Any)
+                        let namestring = self.cropSearch(word: name as Any)
+                        let latDouble = Double(self.cropSearch(word: lat as Any))
+                        let longDouble = Double(self.cropSearch(word: long as Any))
+                        let CuisineString = self.cropSearch(word: cuisine as Any)
+                        print(CuisineString)
+                        let latArr = CuisineString.components(separatedBy: ", ")
+                        let CLLocation = CLLocationCoordinate2D(latitude: latDouble!, longitude: longDouble!)
+                        GlobalVariables.restaurantResults.append(Restaurant(name: namestring, address: location, Latlocation: CLLocation, saved: "unsaved", cuisine: latArr))
+                        GlobalVariables.CuisineResults = GlobalVariables.restaurantResults
+                        self.filteredResults = GlobalVariables.restaurantResults
+                    }
+                    self.Table_of_Places.reloadData()
+                    print("out1")
+                case .failure(_):
+                    print("error")
                 }
-                self.Table_of_Places.reloadData()
-                print("out1")
-            case .failure(_):
-                print("error")
+                print("out2")
             }
-            print("out2")
+            print("out3")
+            start = start + 20
         }
-        print("out3")
     }
     
     func cropSearch(word: Any)-> String
@@ -184,12 +190,12 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
-            filteredResults = CuisineResults
+            filteredResults = GlobalVariables.CuisineResults
             Table_of_Places.reloadData()
             return
         }
         
-        filteredResults = CuisineResults.filter({Restaurant->Bool in
+        filteredResults = GlobalVariables.CuisineResults.filter({Restaurant->Bool in
             Restaurant.name.contains(searchText)})
         Table_of_Places.reloadData()
     }
@@ -200,17 +206,19 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     
     func popupDidDisappear() {
+        let latString = String(loccord.latitude)
+        let lonString = String(loccord.longitude)
         if (FilterTab.CuisineGlobal.SavedCuisine.count == 0 && FilterTab.CuisineGlobal.removeCuisine.count == 0)
         {
             print("empty?")
-            CuisineResults = GlobalVariables.restaurantResults
-            filteredResults = CuisineResults
+            GlobalVariables.CuisineResults = GlobalVariables.restaurantResults
+            filteredResults = GlobalVariables.CuisineResults
             Table_of_Places.reloadData()
         }
         else if (FilterTab.CuisineGlobal.SavedCuisine.count == 0)
         {
-            CuisineResults = GlobalVariables.restaurantResults
-            for i in CuisineResults
+            GlobalVariables.CuisineResults = GlobalVariables.restaurantResults
+            for i in GlobalVariables.CuisineResults
             {
                 outerloop: for j in i.cuisine
                 {
@@ -218,34 +226,67 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
                     {
                         if (j == k)
                         {
-                            CuisineResults = CuisineResults.filter {$0.name != i.name}
+                            GlobalVariables.CuisineResults = GlobalVariables.CuisineResults.filter {$0.name != i.name}
                             break outerloop
                         }
                     }
                 }
             }
-            filteredResults = CuisineResults
+            filteredResults = GlobalVariables.CuisineResults
             Table_of_Places.reloadData()
         }
         else
         {
+            
             print(FilterTab.CuisineGlobal.SavedCuisine.count)
-            CuisineResults.removeAll()
-            for i in GlobalVariables.restaurantResults
+            GlobalVariables.CuisineResults.removeAll()
+            var CuisineString = FilterTab.CuisineGlobal.SavedCuisine[0].id
+            if (FilterTab.CuisineGlobal.SavedCuisine.count > 1)
             {
-                outerLoop: for j in i.cuisine
+                for i in 1...FilterTab.CuisineGlobal.SavedCuisine.count-1
                 {
-                    for k in FilterTab.CuisineGlobal.SavedCuisine
-                    {
-                        if (j == k)
-                        {
-                            CuisineResults.append(i)
-                            break outerLoop
-                        }
-                    }
+                    CuisineString = CuisineString + "%2C"+FilterTab.CuisineGlobal.SavedCuisine[i].id
                 }
             }
-            for i in CuisineResults
+            let network = Networking(baseURL: create_filter_url(lat: latString, long: lonString, radius: "50000", cuisine: CuisineString, type: FilterTab.CuisineGlobal.sortby, order: FilterTab.CuisineGlobal.order)!)
+            //let network = Networking(baseURL: "https://developers.zomato.com/api/v2.1/search?entity_id=216&entity_type=city")
+            network.headerFields = ["user-key": "b9027ccfdfaa41da59bf38701cd49889"]
+            
+            network.get("/get")
+            {
+                result in switch(result)
+                {
+                case .success(let zomato):
+                    print("success")
+                    let jsonval = zomato.dictionaryBody
+                    let data = jsonval["restaurants"] as! NSArray
+                    for i in data
+                    {
+                        let restdata = i as! NSDictionary
+                        let restDict = (restdata.value(forKey: "restaurant")) as! NSDictionary
+                        let name = restDict.value(forKey: "name")
+                        let a = restDict.value(forKey: "location")! as! NSDictionary
+                        let cuisine = restDict.value(forKey: "cuisines")
+                        let lat = a.value(forKey: "latitude")
+                        let long = a.value(forKey: "longitude")
+                        let address = a.value(forKey: "address")
+                        let location = self.cropSearch(word: address as Any)
+                        let namestring = self.cropSearch(word: name as Any)
+                        let latDouble = Double(self.cropSearch(word: lat as Any))
+                        let longDouble = Double(self.cropSearch(word: long as Any))
+                        let CuisineString = self.cropSearch(word: cuisine as Any)
+                        print(CuisineString)
+                        let latArr = CuisineString.components(separatedBy: ", ")
+                        let CLLocation = CLLocationCoordinate2D(latitude: latDouble!, longitude: longDouble!)
+                        GlobalVariables.CuisineResults.append(Restaurant(name: namestring, address: location, Latlocation: CLLocation, saved: "unsaved", cuisine: latArr))
+                        self.filteredResults = GlobalVariables.CuisineResults
+                    }
+                    self.Table_of_Places.reloadData()
+                case .failure(_):
+                    print("error")
+                }
+            }
+            for i in GlobalVariables.CuisineResults
             {
                 outerLoop: for j in i.cuisine
                 {
@@ -253,13 +294,13 @@ class Search: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
                     {
                         if (j == k)
                         {
-                            CuisineResults = CuisineResults.filter {$0.name != i.name}
+                            GlobalVariables.CuisineResults = GlobalVariables.CuisineResults.filter {$0.name != i.name}
                             break outerLoop
                         }
                     }
                 }
             }
-            filteredResults = CuisineResults
+            filteredResults = GlobalVariables.CuisineResults
             Table_of_Places.reloadData()
         }
     }

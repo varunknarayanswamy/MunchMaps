@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, FilterTabDelegate {
+class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, filterTabLibraryDelegate {
     
     @IBOutlet weak var saved_search: UISearchBar!
     @IBOutlet weak var saved_table: UITableView!
@@ -71,7 +71,7 @@ class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterMenu") as! FilterTab
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterLibrary") as! filterTabLibrary
         self.addChild(popOverVC)
         popOverVC.view.frame = self.view.frame
         self.view.addSubview(popOverVC.view)
@@ -84,21 +84,21 @@ class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func popupDidDisappear() {
-        if (FilterTab.CuisineGlobal.SavedCuisine.count == 0 && FilterTab.CuisineGlobal.removeCuisine.count == 0)
+        if (filterTabLibrary.CuisineGlobal.SavedCuisine.count == 0 && filterTabLibrary.CuisineGlobal.removeCuisine.count == 0)
         {
             print("empty?")
             CuisineResults = Search.GlobalVariables.savedRest
             saved_filter_results = CuisineResults
             saved_table.reloadData()
         }
-        else if (FilterTab.CuisineGlobal.SavedCuisine.count == 0)
+        else if (filterTabLibrary.CuisineGlobal.SavedCuisine.count == 0)
         {
             CuisineResults = Search.GlobalVariables.savedRest
             for i in CuisineResults
             {
                 outerloop: for j in i.cuisine
                 {
-                    for k in FilterTab.CuisineGlobal.removeCuisine
+                    for k in filterTabLibrary.CuisineGlobal.removeCuisine
                     {
                         if (j == k)
                         {
@@ -114,13 +114,13 @@ class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         else
         {
             
-            print(FilterTab.CuisineGlobal.SavedCuisine.count)
+            print(filterTabLibrary.CuisineGlobal.SavedCuisine.count)
             CuisineResults.removeAll()
             for i in Search.GlobalVariables.savedRest
             {
                 outerLoop: for j in i.cuisine
                 {
-                    for k in FilterTab.CuisineGlobal.SavedCuisine
+                    for k in filterTabLibrary.CuisineGlobal.SavedCuisine
                     {
                         if (j == k)
                         {
@@ -134,7 +134,7 @@ class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             {
                 outerLoop: for j in i.cuisine
                 {
-                    for k in FilterTab.CuisineGlobal.removeCuisine
+                    for k in filterTabLibrary.CuisineGlobal.removeCuisine
                     {
                         if (j == k)
                         {

@@ -94,6 +94,7 @@ class location_or_city: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func CityButton(_ sender: Any) {
+        self.initialCityArray.removeAll()
         if (CityTextField.text == "")
         {
             print("add in city name")
