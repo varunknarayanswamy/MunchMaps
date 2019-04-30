@@ -13,10 +13,12 @@ class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var saved_search: UISearchBar!
     @IBOutlet weak var saved_table: UITableView!
     var CuisineResults = [Search.Restaurant]()
+    var overallResults = [Search.Restaurant]()
     var saved_filter_results = [Search.Restaurant]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overallResults = Search.GlobalVariables.savedRest
         CuisineResults = Search.GlobalVariables.savedRest
         saved_filter_results = Search.GlobalVariables.savedRest
         saved_table.reloadData()
@@ -34,6 +36,22 @@ class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     return cell
     }
     
+
+    @IBAction func saved_or_future(_ sender: UISegmentedControl) {
+        if (sender.selectedSegmentIndex == 0)
+        {
+            overallResults = Search.GlobalVariables.savedRest
+        }
+        else
+        {
+            overallResults = Search.GlobalVariables.futureRest
+        }
+        filterTabLibrary.CuisineGlobal.SavedCuisine.removeAll()
+        filterTabLibrary.CuisineGlobal.removeCuisine.removeAll()
+        CuisineResults = overallResults
+        saved_filter_results = overallResults
+        saved_table.reloadData()
+    }
     func searchBar(_ saved_search: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
             saved_filter_results = CuisineResults
@@ -87,13 +105,13 @@ class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if (filterTabLibrary.CuisineGlobal.SavedCuisine.count == 0 && filterTabLibrary.CuisineGlobal.removeCuisine.count == 0)
         {
             print("empty?")
-            CuisineResults = Search.GlobalVariables.savedRest
+            CuisineResults = overallResults
             saved_filter_results = CuisineResults
             saved_table.reloadData()
         }
         else if (filterTabLibrary.CuisineGlobal.SavedCuisine.count == 0)
         {
-            CuisineResults = Search.GlobalVariables.savedRest
+            CuisineResults = overallResults
             for i in CuisineResults
             {
                 outerloop: for j in i.cuisine
@@ -116,7 +134,7 @@ class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             
             print(filterTabLibrary.CuisineGlobal.SavedCuisine.count)
             CuisineResults.removeAll()
-            for i in Search.GlobalVariables.savedRest
+            for i in overallResults
             {
                 outerLoop: for j in i.cuisine
                 {
