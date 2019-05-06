@@ -9,7 +9,6 @@
 import UIKit
 
 class SavedTable: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, filterTabLibraryDelegate {
-    
     @IBOutlet weak var saved_search: UISearchBar!
     @IBOutlet weak var saved_table: UITableView!
     var CuisineResults = [Search.Restaurant]()
